@@ -3,6 +3,7 @@ import { Appbar } from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../hooks";
 import { useEffect } from "react";
+import { formatDate } from "../utils/date";
 
 export const Blogs = () => {
   const { loading, blogs } = useBlogs();
@@ -41,14 +42,14 @@ export const Blogs = () => {
   return (
     <div className="flex flex-col items-center h-svh w-full">
       <Appbar></Appbar>
-      {blogs.map((blog) => {
+      {blogs.reverse().map((blog) => {
         return (
           <BlogCard
             id={blog.id}
             authorName={blog.author.name || "Anonymous"}
             title={blog.title}
             content={blog.content}
-            publishedDate="2nd Feb 2024"
+            publishedDate= {formatDate(blog.date) || '22 Oct 2002'}
           />
         );
       })}

@@ -5,10 +5,10 @@ import { Delta } from "quill/core";
 
 export interface Blog {
   id: string;
-  name: string;
   title: string;
   author: {name: string};
   content: Delta;
+  date: string;
 }
 
 export const useBlogs = () => {
