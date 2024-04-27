@@ -1,9 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import { Appbar } from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../hooks";
+import { useEffect } from "react";
 
 export const Blogs = () => {
   const { loading, blogs } = useBlogs();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(!localStorage.getItem('token')) navigate('/');
+  }, [navigate])
 
   if (loading) {
     return (

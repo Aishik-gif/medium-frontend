@@ -6,7 +6,7 @@
 }
 
 .ql-snow > .ql-editor{
-  min-height: 50svh; 
+  height: 50svh;
 }
 
 .ql-disabled > .ql-editor{

@@ -3,7 +3,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import React, { useCallback, useEffect, useState } from "react";
 import "../App.css";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Delta, EmitterSource } from "quill/core";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
@@ -48,6 +48,7 @@ export const Publish = () => {
           <input
             className="block w-full p-2.5 m-3 text-4xl font-serif focus:outline-none text-gray-900 rounded-lg dark:placeholder-gray-400 dark:text-white"
             placeholder="Title"
+            required
             onChange={(e) => {
               setPost({ ...post, title: e.target.value });
             }}
@@ -92,13 +93,14 @@ const TextEditor = ({ post, setPost }: Props) => {
   }, [quill, post, setPost]);
 
   const publish = async () => {
-    console.log(createBlogInput.safeParse(post), post)
-    const response = await axios.post(`${BACKEND_URL}/blog`, post, {
+    try{const response = await axios.post(`${BACKEND_URL}/blog`, post, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-    navigate(`/blog/${response.data.id}`)
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    navigate(`/blog/${response.data.id}`);}catch(e){
+      alert('Something went wrong!😵')
+    }
   };
 
   const wrapperRef = useCallback((wrapper: HTMLDivElement) => {
