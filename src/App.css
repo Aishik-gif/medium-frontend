@@ -1,0 +1,19 @@
+.ql-container.ql-snow{
+  margin: 5px 0;
+  border-top: 1px solid #ccc !important;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border-radius: 5px;
+}
+
+.ql-snow > .ql-editor{
+  min-height: 50svh; 
+}
+
+.ql-disabled > .ql-editor{
+  padding: 0;
+}
+
+.ql-toolbar.ql-snow{
+  border-radius: 5px;
+  background: #eee;
+}
