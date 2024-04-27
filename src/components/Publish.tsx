@@ -3,11 +3,10 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import React, { useCallback, useEffect, useState } from "react";
 import "../App.css";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { Delta, EmitterSource } from "quill/core";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
-import { createBlogInput } from "@aishikd2/medium-common";
 
 export const Publish = () => {
   const [post, setPost] = useState({});
