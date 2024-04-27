@@ -3,6 +3,7 @@ import { Blog } from "../hooks";
 import { Appbar } from "./Appbar";
 import { Delta } from "quill/core";
 import { useEffect, useRef } from "react";
+import "quill/dist/quill.bubble.css";
 
 export const BlogPage = ({ blog }: { blog: Blog | undefined }) => {
   if (!blog)
@@ -22,7 +23,7 @@ export const BlogPage = ({ blog }: { blog: Blog | undefined }) => {
           <div className="col-span-8">
             <div className="text-5xl font-extrabold">{blog.title}</div>
             <div className="pt-5 text-gray-700 dark:text-gray-200">
-              <DeltaRenderer delta={blog.content}/>
+              <DeltaRenderer delta={blog.content} />
             </div>
           </div>
           <div className="col-span-4 pt-10 md:pt-0">
@@ -37,7 +38,7 @@ export const BlogPage = ({ blog }: { blog: Blog | undefined }) => {
     </div>
   );
 };
-interface Props{
+interface Props {
   delta: Delta;
 }
 
@@ -47,7 +48,8 @@ function DeltaRenderer({ delta }: Props) {
   useEffect(() => {
     if (editorRef.current) {
       const quill = new Quill(editorRef.current, {
-        readOnly: true
+        readOnly: true,
+        theme: "bubble",
       });
       quill.setContents(delta);
     }
